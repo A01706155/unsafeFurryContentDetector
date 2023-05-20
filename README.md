@@ -30,7 +30,7 @@ With those requirements, the following filters were used to download image data:
 
 ```rating:e -rating:s type:jpg type:png order:score -human -photo -overweight -text -scat -watersports -inflation -pool_toy -black_and_white -monochrome -sketch -3d -babyfur -shitpost -aged_down -reaction_image -hyper_muscles -patreon_logo -young -doom_(series) -food_creature -big_breasts -not_furry```
 
-For both the SFW and NSFW filters, some content that I considered extreme were removed since there's some art with lots of unethical or very gross subjects.
+For both the SFW and NSFW filters, some content that I considered extreme was removed since there's some art with lots of unethical or very gross subjects.
 
 After the content was downloaded, I used [Caesium Image Compressor](https://saerasoft.com/caesium/), which is open source, to compress all of the png images and get them uploaed to my Google Account without issues since I have limited space and I don't want to use the university's cloud storage. All of the files went from 9 GB to around 600 MB. 
 
