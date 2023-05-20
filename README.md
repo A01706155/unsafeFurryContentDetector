@@ -23,9 +23,11 @@ When using the downloader software, some filters were created to try to get the 
 With those requirements, the following filters were used to download image data:
 
 **SFW (Safe For Work) images:**
+
 ```rating:s type:jpg type:png order:score -human -photo -big_belly -overweight -text -inflation -pool_toy -black_and_white -monochrome -sketch -3d -babyfur -diaper -shitpost -aged_down -reaction_image -hyper_muscles -seductive -patreon_logo -young -wide_hips -doom_(series) -food_creature -looking_at_viewer -big_breasts -convenient_censorship -not_furry```
 
 **NSFW (Not Safe For Work) images:**
+
 ```rating:e -rating:s type:jpg type:png order:score -human -photo -overweight -text -scat -watersports -inflation -pool_toy -black_and_white -monochrome -sketch -3d -babyfur -shitpost -aged_down -reaction_image -hyper_muscles -patreon_logo -young -doom_(series) -food_creature -big_breasts -not_furry```
 
 For both the SFW and NSFW filters, some content that I considered extreme were removed since there's some art with lots of unethical or very gross subjects.
