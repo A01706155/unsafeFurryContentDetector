@@ -55,8 +55,28 @@ What I had to do was the following:
 
 After the manual review, I counted all of the SFW and NSFW images using ```Ctrl + A``` on the file explorer and then calculated the 10% of the file count to manually select and move images to the test folders.
 
-Now, I needed to get data augmentation for the dataset. I used the code [NSFW_Furry_Image_Detector_A01706155.ipynb](./NSFW_Furry_Image_Detector_A01706155.ipynb) to create the datagen and run a very simple model to start the generation of the images. I'm not sure if this is the only way but for now I took this approach to make the new images generation.
+### Data augmentation
+Now, I needed to get data augmentation for the dataset. I used the code [NSFW_Furry_Image_Detector_A01706155.ipynb](./NSFW_Furry_Image_Detector_A01706155.ipynb) to create the datagen and run a very simple model to start the generation of the images. 
 
-I zipped all of the files and uploaded them [here](https://drive.google.com/drive/folders/1r-uJWHH_A7MWnHDd6ZcGFRKvapNyBV8Z?usp=share_link). I will uncompress the contents of the zips later.
+The following code fragment was used for data augmentation. 
+```py
+train_datagen = ImageDataGenerator(
+rescale = 1./255,
+rotation_range = 25,
+width_shift_range = 0.1,
+height_shift_range = 0.1,
+shear_range = 0.2,
+zoom_range = 0.15,
+horizontal_flip = True)
+```
+
+I set a rotation range of 25 because I don't feel like big rotations are going to make the model learn correctly. 
+The shift ranges are minimal in order to avoid the model learning from very stretched images that could add noise. 
+The shear range is moderated so the model can still know how things should look like. 
+The zoom range is minimal too so we don't lose important details of the images. 
+
+I think most of these transformations are good but in moderated values, it really depends on the kind of images you want your model to learn from too.
+
+I zipped all of the files and uploaded them [here](https://drive.google.com/drive/folders/1r-uJWHH_A7MWnHDd6ZcGFRKvapNyBV8Z?usp=share_link). I will uncompress the contents of the zips later. 
 
 For now, this is everything I've been doing these days. Thanks! 😊
