@@ -79,4 +79,60 @@ I think most of these transformations are good but in moderated values, it reall
 
 I zipped all of the files and uploaded them [here](https://drive.google.com/drive/folders/1r-uJWHH_A7MWnHDd6ZcGFRKvapNyBV8Z?usp=share_link). I will uncompress the contents of the zips later. 
 
+### Model
+A model was trained for the detection of the safe and unsafe furry images. The train accuracy got to 70% but the accuracy with the test data was of 65% meaning. This means my current model is overfitting and not learning properly.
+
+We will use this convolutional neural network model based on how the [VGG16 model](https://datagen.tech/guides/computer-vision/vgg16/) was made to take advantage of having a base and modify it depending on what we see while training.
+
+Based on [VGG16](https://datagen.tech/guides/computer-vision/vgg16/), I took a high resolution input like they did and added convolutional filters using using (3,3) kernel sizes and ReLu activations because that function only gives us positive numbers and if there's any negatives we just get zero, so that's good for our model training process.
+
+With the usage of Pooling layers, we reduce the number of parameters created by the convolutional steps.
+
+Finally, we get our output doing a dense of only 1 parameter using a sigmoid function to get 0 to 1 values.
+
+This is the model I created for training:
+```
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 254, 254, 32)      896       
+                                                                 
+ max_pooling2d (MaxPooling2D  (None, 127, 127, 32)     0         
+ )                                                               
+                                                                 
+ conv2d_1 (Conv2D)           (None, 125, 125, 64)      18496     
+                                                                 
+ max_pooling2d_1 (MaxPooling  (None, 62, 62, 64)       0         
+ 2D)                                                             
+                                                                 
+ dropout (Dropout)           (None, 62, 62, 64)        0         
+                                                                 
+ conv2d_2 (Conv2D)           (None, 60, 60, 128)       73856     
+                                                                 
+ max_pooling2d_2 (MaxPooling  (None, 30, 30, 128)      0         
+ 2D)                                                             
+                                                                 
+ conv2d_3 (Conv2D)           (None, 28, 28, 256)       295168    
+                                                                 
+ max_pooling2d_3 (MaxPooling  (None, 14, 14, 256)      0         
+ 2D)                                                             
+                                                                 
+ dropout_1 (Dropout)         (None, 14, 14, 256)       0         
+                                                                 
+ flatten (Flatten)           (None, 50176)             0         
+                                                                 
+ dense (Dense)               (None, 128)               6422656   
+                                                                 
+ dense_1 (Dense)             (None, 1)                 129       
+                                                                 
+=================================================================
+Total params: 6,811,201
+Trainable params: 6,811,201
+Non-trainable params: 0
+```
+
+### Model conclusions
+When doing manual/interactive testing with the model, I saw it learned real explicit things from the unsafe content, but since there are some suggestive images in the SFW folder, I think it creates some confusion. To try to make this content detector a bit better, I will move some of the "safe" suggestive images to the "nsfw" folder and see what it does. The last thing I will be doing is using transfer learning to see how the learning of the model changes.
+
 For now, this is everything I've been doing these days. Thanks! 😊
